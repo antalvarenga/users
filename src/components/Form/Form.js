@@ -1,12 +1,26 @@
+import { useState } from "react";
 import Button from "../UI/Button/Button";
 import Card from "../UI/Card/Card";
 import styles from "./Form.module.scss";
 
-const Form = () => {
+const Form = ({onAddUser}) => {
+    console.log("render")
+    const [name, setName] = useState("")
+    const [age, setAge] = useState("")
+
+    const nameChangeHandler = (e) => {
+        setName(e.target.value)
+    };
+
+    const ageChangeHandler = (e) => {
+        setAge(e.target.value)
+    };
+
     const submitHandler = (e) => {
         e.preventDefault();
-
-        console.log("form submitted");
+        onAddUser({name, age})
+        setName("")
+        setAge("")
     };
 
     return (
@@ -14,11 +28,15 @@ const Form = () => {
             <form onSubmit={submitHandler}>
                 <div className={styles.formControl}>
                     <label>Username</label>
-                    <input type="text" />
+                    <input type="text" value={name} onChange={nameChangeHandler} />
                 </div>
                 <div className={styles.formControl}>
                     <label>Age (Years)</label>
-                    <input type="number" />
+                    <input 
+                        type="number"
+                        min="0"
+                        value={age}
+                        onChange={ageChangeHandler}/>
                 </div>
                 <Button type="submit">Add User</Button>
             </form>
