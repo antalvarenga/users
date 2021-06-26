@@ -1,0 +1,43 @@
+@import '/src/variables.scss';
+
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background: black;
+    opacity: 0.5;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    background: white;
+    width: 55%;
+    margin: 0 auto;
+    top: 200px;
+    right: 0;
+    left: 0;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    text-align: right;
+
+    button {
+        margin-right: 10px;
+    }
+    .header {
+        text-align: left;
+        background: $indigo;
+        margin: 0;
+        padding: 10px;
+        color: $white;
+        border-radius: 10px 10px 0 0;
+    }
+    .children {
+        padding: 20px;
+        text-align: left;
+    }
+}
+

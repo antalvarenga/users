@@ -1,5 +1,7 @@
+@import '/src/variables.scss';
+
 .button {
-    background: indigo;
+    background: $indigo;
     color: white;
     border: none;
     padding: 0.6rem;
@@ -8,5 +10,5 @@
 }
 
 .button:hover {
-    background: purple;
+    background: $purple;
 }
