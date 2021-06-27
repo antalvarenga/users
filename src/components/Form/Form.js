@@ -7,8 +7,7 @@ import styles from "./Form.module.scss";
 const Form = ({onAddUser}) => {
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
-    const [errorMessage, setErrorMessage] = useState("")
-    const [modalIsVisible, setModalIsVisible] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
 
     const nameChangeHandler = (e) => {
         setName(e.target.value)
@@ -21,6 +20,7 @@ const Form = ({onAddUser}) => {
     const isFormValid = () => {
         if (name && age) {
             if (age > 0) {
+                setErrorMessage(null)
                 return true
             } else {
                 setErrorMessage("Please enter a valid age (> 0)")
@@ -38,14 +38,11 @@ const Form = ({onAddUser}) => {
             onAddUser({name, age})
             setName("")
             setAge("")
-        } else {
-            setModalIsVisible(true)
         }
     };
 
     const onModalCloseHandler = () => {
-        console.log("close")
-        setModalIsVisible(false)
+        setErrorMessage(null)
     }
 
     return (
@@ -64,7 +61,7 @@ const Form = ({onAddUser}) => {
                 </div>
                 <Button type="submit">Add User</Button>
             </form>
-            {modalIsVisible && 
+            {errorMessage && 
                 <Modal header="Invalid Input" onClose={onModalCloseHandler}>
                     {errorMessage}
                 </Modal>
